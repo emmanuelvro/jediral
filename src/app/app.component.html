@@ -1,0 +1,12 @@
+<mat-sidenav-container id="myDIV">
+  <mat-sidenav #sidenav role="navigation" *ngIf="!_router.url.includes('/login')">
+    <app-sidenav-list (sidenavClose)="sidenav.close()"></app-sidenav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-header (sidenavToggle)="sidenav?.toggle()" *ngIf="!_router.url.includes('/login')"></app-header>
+    <!--in here all the content must reside. We will add a navigation header as well-->
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

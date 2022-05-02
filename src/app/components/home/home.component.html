@@ -1,0 +1,110 @@
+<div class="container-fluid">
+  <div class="row" style="padding-bottom: 50px;">
+    <div class="col-md-3">
+      <mat-label>Cuenta: </mat-label>
+      <input class="form-control text-center" readonly value="{{account}}">
+    </div>
+    <div class="col-md-3">
+      <mat-label>Email: </mat-label>
+      <input class="form-control text-center" readonly value="{{email}}">
+    </div>
+  </div>
+
+  <form [formGroup]="form" autocomplete="off">
+
+    <div class="form-group">
+      <mat-form-field appearance="standard" class="col-md-4" style="padding-right: 30px;">
+        <mat-label># Utilizado</mat-label>
+        <input matInput formControlName="hash" #nameInput>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill" class="col-md-4" style="padding-right: 30px;">
+      <mat-label>Fecha de publicación</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dob">
+      <mat-datepicker-toggle matSuffix [for]="picker">
+          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field appearance="standard" class="col-md-4" style="padding-right: 30px;">
+      <mat-label>Día 1 de alcance de personas:</mat-label>
+      <input matInput formControlName="alcance1" type="number">
+    </mat-form-field>
+    <mat-form-field appearance="standard" class="col-md-4" style="padding-right: 30px;">
+      <mat-label>Día 2 de alcance de personas:</mat-label>
+      <input matInput formControlName="alcance2" type="number">
+    </mat-form-field>
+    <mat-form-field appearance="standard" class="col-md-4" style="padding-right: 30px;">
+      <mat-label>Día 3 de alcance de personas:</mat-label>
+      <input matInput formControlName="alcance3" type="number">
+    </mat-form-field>
+  </div>
+
+
+
+      <div mat-dialog-actions align="start">
+          <button mat-raised-button color="primary" (click)="save()" type="submit" [disabled]="!form!.valid">Ingresar</button>
+      </div>
+  </form>
+  <!-- <div>{{ form!.value | json }}</div> -->
+</div>
+<div style="text-align: center;">
+  <button mat-raised-button color="warn" (click)="analiza()" style="margin-top: 30px; ">Analizar HAshtag</button>
+</div>
+
+<div class="search">
+  <mat-form-field>
+    <input matInput type="text" class="busqueda" (keyup)="doFilter($any($event.target).value)" placeholder="Busqueda">
+  </mat-form-field>
+</div>
+<div class="wrapper">
+  <table mat-table [dataSource]="dataSource"  matSort class="mat-elevation-z8">
+
+    <ng-container matColumnDef="cuenta">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cuenta </th>
+      <td mat-cell *matCellDef="let element"> {{element.cuenta}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="hashtag">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Hashtag </th>
+      <td mat-cell *matCellDef="let element"> {{element.hashtag}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fechaPublicacion">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha  </th>
+      <td mat-cell *matCellDef="let element"> {{element.fechaPublicacion}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="alcance1">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Día 1 de alcance de personas </th>
+      <td mat-cell *matCellDef="let element"> {{element.alcance1}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="alcance2">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Día 2 de alcance de personas </th>
+      <td mat-cell *matCellDef="let element"> {{element.alcance2}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="alcance3">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Día 3 de alcance de personas </th>
+      <td mat-cell *matCellDef="let element"> {{element.alcance3}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <!-- Angular 8 pagination -->
+  <mat-paginator [pageSize] = "10" [pageSizeOptions]="[10, 50, 100]" showFirstLastButtons></mat-paginator>
+  <div *ngIf="isLoading"
+  style="display: flex; justify-content: center; align-items: center; background: white;">
+ <mat-progress-spinner
+   color="primary"
+   mode="indeterminate">
+ </mat-progress-spinner>
+</div>
+</div>

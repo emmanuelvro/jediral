@@ -1,0 +1,15 @@
+<mat-toolbar color="default">
+  <div fxHide.gt-xs>
+      <button mat-icon-button (click)="onToggleSidenav()">
+          <mat-icon>menu</mat-icon>
+      </button>
+  </div>
+  <div class="logo">
+    <p style="padding: 30px; font-size: 40px;">JEDIRAL</p>
+  </div>
+  <span class="example-spacer"></span>
+    <span style="font-size: 14px; padding-right: 10px;">{{usuario}}</span>
+    <button title="Cerrar Sesión" (click)="logOut()" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+</mat-toolbar>

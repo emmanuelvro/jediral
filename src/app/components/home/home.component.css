@@ -1,0 +1,31 @@
+table {
+
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.wrapper{
+  padding-top: 50px;
+}
+
+.button-download{
+  margin-bottom: 10px;
+  background-color: green;
+  color: white;
+}
+
+.busqueda{
+  text-align: center;
+}
+
+.search{
+  display: flex;
+  justify-content: center;
+}
+
+mat-form-field {
+  width: 40%;
+}

@@ -1,0 +1,38 @@
+a {
+  text-decoration: none;
+  color: white;
+}
+a:hover, a:active{
+  color: lightgray;
+}
+.navigation-items{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+button{
+  border: 0;
+  padding-bottom: 0;
+  border-radius: 8px;
+}
+mat-toolbar{
+  border-radius: 3px;
+}
+@media(max-width: 959px){
+  mat-toolbar{
+      border-radius: 0px;
+  }
+
+  .logo{
+    flex: 1 1 auto;
+    text-align: center;
+  }
+  .logo  img{
+    width: 10%;
+    padding: 10px;
+  }
+}
+
